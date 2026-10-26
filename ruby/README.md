@@ -35,7 +35,11 @@ require 'apiverve_insidertrading'
 client = APIVerve::Insidertrading::Client.new(api_key: "YOUR_API_KEY")
 
 # Make a request
-response = client.execute
+response = client.execute({
+  ticker: "AAPL",
+  type: "buy",
+  limit: 10
+})
 
 # Print the response
 puts response
@@ -46,7 +50,7 @@ puts response
 
 ```ruby
 begin
-  response = client.execute({  })
+  response = client.execute({ ticker: "AAPL", type: "buy", limit: 10 })
   puts response["data"]
 rescue APIVerve::Insidertrading::ValidationError => e
   puts "Validation error: #{e.errors.join(', ')}"

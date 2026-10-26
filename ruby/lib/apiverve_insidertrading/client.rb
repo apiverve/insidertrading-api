@@ -10,7 +10,7 @@ module APIVerve
     #
     # @example Basic usage
     #   client = APIVerve::Insidertrading::Client.new(api_key: "your_api_key")
-    #   response = client.execute({})
+    #   response = client.execute({ ticker: "AAPL", type: "buy", limit: 10 })
     #   puts response
     #
     # @see https://apiverve.com/marketplace/insidertrading?utm_source=ruby&utm_medium=referral&utm_content=readme
@@ -19,7 +19,7 @@ module APIVerve
       DEFAULT_TIMEOUT = 30
 
       # Validation rules for parameters
-      VALIDATION_RULES = {}
+      VALIDATION_RULES = { 'ticker' => { type: 'string', required: true, min_length: 1, max_length: 6 }, 'type' => { type: 'string', required: false }, 'limit' => { type: 'integer', required: false, min: 1, max: 25 } }
 
       # Format validation patterns
       FORMAT_PATTERNS = {
